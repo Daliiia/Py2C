@@ -1,0 +1,36 @@
+ def calc_profit():
+	c1 = clac_labor_cost(); labor_cost.append(c1)
+	c2= calc_parts_cost(); parts_cost.append(c2)
+	x= calc_demand(); demand.append(x)
+	p=(249-c1-c2)*x-1000000
+	profit.append(p); return p
+	def calc_labor_cost():
+		x=r.random()
+		if(x<0.1): return 43
+		elif (x<0.3): return 44
+		elif (x<0.7): return 45
+		elif(x< 0.9): return 46
+		elif(x<1.0): return 47
+		def calc_parts_cost(): return 80+r.random() *20
+	
+ def calc_demand() : return n.random.normal(15000,4500)
+
+ def  plot():
+	plt.figure(1); plt.hist(labor_cost,edgecolor='white'); plt.title("labor cost histogram")
+	plt.figure(2); plt.hist(parts_cost,edgecolor='white'); plt.title("parts cost histogram")
+	plt.figure(3); plt.hist(demand,edgecolor='white'); plt.title("demand histogram")
+	plt.figure(4); plt.hist(profit,edgecolor='white'); plt.title("profit histogram");
+	plt.show(block=True)
+	def main(n):
+		loss_cost=Average_profit=0; max_profit=float('-inf');min_profit=float('inf')
+		labor_cost=parts_cost=demand=profit=[]
+		for _ in range(n):
+			profit=calc_profit();Average_profit+=profit
+			if(profit<0):loss_count+=1
+			min_profit=min(profit,min_profit); max_profit=max(profit,max_profit)
+			Average_profit=Average_profit/n
+			print("the maximum profit is ",max_profit); print("the maximum loss is ",abs(min_profit))
+			print("the average profit is ", Average_profit); print("the probability of loss is ",loss_count/n,"%")
+			plot()
+			main(10)
+			main(10000)
